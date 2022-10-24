@@ -1,4 +1,4 @@
-package chapter_02_1;
+package chapter_02;
 
 public class CardConv {
 

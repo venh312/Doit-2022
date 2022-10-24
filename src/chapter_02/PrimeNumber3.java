@@ -1,4 +1,4 @@
-package chapter_02_1;
+package chapter_02;
 
 //1,000 이하의 소수를 나열
 public class PrimeNumber3 {

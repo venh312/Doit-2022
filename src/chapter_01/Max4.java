@@ -1,8 +1,8 @@
-package chapter_01_1;
+package chapter_01;
 
 import java.util.Scanner;
 
-public class Min4 {
+public class Max4 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -16,22 +16,22 @@ public class Min4 {
         System.out.print("d 값을 입력하세요.");
         int d = scanner.nextInt();
 
-        System.out.println("최소 값 : " + min4(a,b,c,d));
+        System.out.println("최대 값 : " + max4(a,b,c,d));
     }
 
-    static int min4(int a, int b, int c, int d) {
-        int min = a;
+    static int max4(int a, int b, int c, int d) {
+        int max = a;
 
-        if (b < min) {
-            min = b;
+        if (b > max) {
+            max = b;
         }
-        if (c < min) {
-            min = c;
+        if (c > max) {
+            max = c;
         }
-        if (d < min) {
-            min = d;
+        if (d > max) {
+            max = d;
         }
 
-        return min;
+        return max;
     }
 }
