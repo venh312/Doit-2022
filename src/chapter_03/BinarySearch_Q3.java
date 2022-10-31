@@ -1,31 +1,11 @@
 package chapter_03;
 
+/**
+ * 이진탐색
+ */
 public class BinarySearch_Q3 {
 
     static int binSearchX(int[] a, int n, int key) {
-        int pl = 0;
-        int pr = n - 1;
-        int x = -1;
-        do {
-            int pc = (pl + pr) / 2;
-            if (a[pc] == key) {
-                pr = pc - 1;
-                x = pc - 1;
-                if (pc > key) {
-                    return x;
-                }
-            } else if (a[pc] < key) {
-                pl = pc + 1;
-            } else {
-                pr = pc - 1;
-            }
-
-        } while(pl <= pr);
-
-        return x > -1 ? x-1 : x;
-    }
-
-    static int binSearchXX(int[] a, int n, int key) {
         int pl = 0;			// 검색 범위 맨앞의 인덱스
         int pr = n - 1;		// 　 〃    　맨끝의 인덱스
         do {
@@ -48,7 +28,6 @@ public class BinarySearch_Q3 {
 
     public static void main(String[] args) {
         int[] a = {1,3,5,5,5,5,6,8,7,7,9};
-        System.out.println("1 Key Index " + binSearchX(a, a.length, 7));
-        System.out.println("2 Key Index " + binSearchXX(a, a.length, 7));
+        System.out.println("Key Index " + binSearchX(a, a.length, 5));
     }
 }

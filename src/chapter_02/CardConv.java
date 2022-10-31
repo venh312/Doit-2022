@@ -5,17 +5,12 @@ public class CardConv {
     public static void main(String[] args) {
         char[] cno = new char[32];
 
-        int dno = CardConv(59, 10, cno);
+        int dno = CardConv(59, 2, cno);
 
         for (int i=0; i<dno; i++) {
             System.out.print(cno[i]);
         }
     }
-
-    static String test(String b) {
-        return b + "b";
-    }
-
 
     /**
      * 진수 변환
@@ -30,7 +25,6 @@ public class CardConv {
         String dchar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWYXZ";
 
         while (x != 0) {
-            char c = dchar.charAt(x % r);
             d[digits++] = dchar.charAt(x % r);
             x /= r;
         }
@@ -40,7 +34,7 @@ public class CardConv {
             d[i] = d[digits-i-1];
             d[digits-i-1] = t;
         }
-        System.out.println("digits : " + digits);
+
         return digits;
     }
 

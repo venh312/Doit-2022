@@ -1,5 +1,8 @@
 package chapter_03;
 
+/**
+ * 이진탐색
+ */
 public class BinarySearch {
 
     static int binarySearch(int[] a, int n, int key) {
