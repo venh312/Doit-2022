@@ -23,7 +23,22 @@ public class HeapSort {
             int tmp = arr[j];
             arr[j] = arr[0];
             arr[0] = tmp;
-            heapify(arr, j);
+
+            int root = 0;
+            int c = 1;
+            while (c < j) {
+                c = 2*root + 1;
+                if (c<j-1 && arr[c] < arr[c+1]) {
+                    c++;
+                }
+                if (c<j && arr[root] < arr[c]) {
+                    int tmp2 = arr[root];
+                    arr[root] = arr[c];
+                    arr[c] = tmp2;
+                }
+
+                root = c;
+            }
         }
     }
 

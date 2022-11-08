@@ -13,8 +13,9 @@ public class Courses30_64062 {
 
             if (check(stones, k, mid)) {
                 System.out.println("b : " + mid);
-                min = mid + 1;
-                answer = mid;
+                //min = mid + 1;
+                //answer = mid;
+                return answer;
             } else {
                 System.out.println("c : " + mid);
                 max = mid;
