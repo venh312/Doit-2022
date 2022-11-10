@@ -8,10 +8,11 @@ public class DFS_Ex1 {
     static void dfs(int x) {
         // 현재 노드를 방문 처리
         visited[x] = true;
-        System.out.print(x + " ");
+        //System.out.print(x + " ");
         // 현재 노드와 연결된 다른 노드를 재귀적으로 방문
         for (int i = 0; i < graph.get(x).size(); i++) {
             int y = graph.get(x).get(i);
+            System.out.println("x : " + x + "/ y : " + y);
             if (!visited[y]) dfs(y);
         }
     }
@@ -68,7 +69,7 @@ public class DFS_Ex1 {
 //        graph.get(5).add(7);
 //        graph.get(6).add(8);
 
-        dfs(0);
+        dfs(1);
     }
 
 
