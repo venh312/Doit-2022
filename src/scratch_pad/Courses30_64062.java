@@ -1,4 +1,4 @@
-package kakao;
+package scratch_pad;
 
 public class Courses30_64062 {
 
@@ -9,15 +9,17 @@ public class Courses30_64062 {
 
         while (max > min) {
             int mid = (min + max) / 2;
-            System.out.println("a : " +mid);
+            //System.out.println("a : " +mid);
 
             if (check(stones, k, mid)) {
-                System.out.println("b : " + mid);
+                //System.out.println("b : " + mid);
                 //min = mid + 1;
                 //answer = mid;
-                return answer;
+                System.out.println("111");
+                return mid;
             } else {
-                System.out.println("c : " + mid);
+                //System.out.println("c : " + mid);
+                System.out.println("222");
                 max = mid;
             }
         }
@@ -45,6 +47,6 @@ public class Courses30_64062 {
     public static void main(String[] args) {
         int[] a = {2, 4, 5, 3, 2, 1, 4, 2, 5, 1};
         int k = 3;
-        System.out.println(solution(a, k));
+        System.out.println("정답은 : " + solution(a, k));
     }
 }

@@ -1,4 +1,4 @@
-package kakao;
+package scratch_pad;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -35,20 +35,21 @@ public class Note_1 {
         }
     }
 
-    public static void main(String[] args) {
 
-        for (int i=0; i<visited.length; i++) {
-            graph.add(new ArrayList<Integer>());
+    static int[] dp = new int[100];
+    static int fivo(int x) {
+
+        dp[0] = 1;
+        dp[1] = 1;
+
+        for (int i=2; i<x; i++) {
+            dp[i] = dp[i-1] + dp[i-2];
         }
 
-        graph.get(1).add(4);
-        graph.get(1).add(7);
-        graph.get(4).add(5);
-        graph.get(4).add(6);
-        graph.get(6).add(3);
-        graph.get(3).add(2);
+        return dp[x-1];
+    }
 
-        //dfs(1);
-        bfs(1);
+    public static void main(String[] args) {
+        System.out.println(fivo(4));
     }
 }
