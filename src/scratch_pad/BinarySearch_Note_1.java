@@ -15,13 +15,8 @@ public class BinarySearch_Note_1 {
 
         for (String data : arr) {
             int parse_data = Integer.parseInt(data);
-            System.out.println("====================");
-            System.out.println("height : " + height);
             if (parse_data > height) {
-                System.out.println("if parse_data : " + parse_data);
-                System.out.println("if height : " + height);
                 result += (parse_data - height);
-                System.out.println("if result : " + result);
             }
         }
 
