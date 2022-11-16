@@ -26,21 +26,12 @@ public class Practice_04 {
     static int solution(String[] babbling) {
         int answer = 0;
 
-        String[] checkArr = {"aya", "ye", "woo", "ma"};
-
         for (String b : babbling) {
-            if (b.equals("ayaaya")
-                || b.equals("yeye")
-                || b.equals("woowoo")
-                || b.equals("mama")) continue;
-
-            for (String c : checkArr) {
-                b = b.replace(c, "#");
-                b = b.replace("#", "");
-            }
-
-            if (b.isEmpty()) answer++;
-            else System.out.println(b);
+            if (b.contains("ayaaya")
+                    || b.contains("yeye")
+                    || b.contains("woowoo")
+                    || b.contains("mama")) continue;
+            if (b.replaceAll("aya|ye|woo|ma", "").isEmpty()) answer++;
         }
 
         return answer;
