@@ -38,12 +38,21 @@ package prgm.lv1;
 public class Practice_05 {
     static int solution(int a, int b, int n) {
         int answer = 0;
+        int r = 0;
 
+        while (n >= a) {
+            r = n % a;
+            n = (int) (Math.floor(n / a) * b);
+            answer += n;
+            n += r;
+        }
+
+        //return (n - b) / (a - b) * b;
         return answer;
     }
 
     public static void main(String[] args) {
-        //System.out.println("==> result: " + solution(2, 1, 20));
-        System.out.println("==> result: " + solution(3, 1, 20));
+        System.out.println("==> result: " + solution(2, 1, 20));
+        //System.out.println("==> result: " + solution(3, 1, 20));
     }
 }
