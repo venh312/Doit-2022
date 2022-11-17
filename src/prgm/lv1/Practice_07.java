@@ -1,7 +1,5 @@
 package prgm.lv1;
 
-import java.util.*;
-
 /**
  * 문제 설명
  * 두 정수 X, Y의 임의의 자리에서 공통으로 나타나는 정수 k(0 ≤ k ≤ 9)들을 이용하여 만들 수 있는 가장 큰 정수를 두 수의 짝꿍이라 합니다(단, 공통으로 나타나는 정수 중 서로 짝지을 수 있는 숫자만 사용합니다). X, Y의 짝꿍이 존재하지 않으면, 짝꿍은 -1입니다. X, Y의 짝꿍이 0으로만 구성되어 있다면, 짝꿍은 0입니다.
@@ -39,34 +37,35 @@ import java.util.*;
  */
 public class Practice_07 {
     static String solution(String X, String Y) {
-        String answer = "-1";
+        String answer = "";
         StringBuilder str = new StringBuilder();
-        Stack<String> stack_x = new Stack<>();
-        Stack<String> stack_y = new Stack<>();
 
-        for (String x : X.split("")) {
-            stack_x.push(x);
-        }
-        for (String y : Y.split("")) {
-            stack_y.push(y);
-        }
-
-        if (stack_x.size() >= stack_y.size()) {
-            while (!stack_y.isEmpty()) {
-                String y = stack_y.pop();
-                if(stack_x.contains(y)) str.append(y);
+        for (int i=9; i>=0; i--) {
+            String t = String.valueOf(i);
+            if (X.contains(t) && Y.contains(t)) {
+                int count_x = X.length() - X.replace(t, "").length();
+                int count_y = Y.length() - Y.replace(t, "").length();
+                int length = Math.min(count_x, count_y);
+                for (int j=0; j<length; j++) str.append(t);
             }
         }
 
-        System.out.println(str.toString());
+        int strLen = str.length();
+
+        if (strLen > 0) {
+            answer = str.toString();
+            if (answer.replace("0", "").length() == 0) answer = "0";
+        } else {
+            answer = "-1";
+        }
 
         return answer;
     }
 
     public static void main(String[] args) {
-        //System.out.println("==> result: " + solution("100", "2345"));
+        System.out.println("==> result: " + solution("100", "2345"));
         //System.out.println("==> result: " + solution("12321", "42531"));
-        System.out.println("==> result: " + solution("42531", "12321"));
-        //System.out.println("==> result: " + solution("100", "203045"));
+        System.out.println("==> result: " + solution("5525", "1255"));
+        System.out.println("==> result: " + solution("100", "203045"));
     }
 }
