@@ -1,8 +1,6 @@
 package scratch_pad;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Note_1 {
 
@@ -50,6 +48,43 @@ public class Note_1 {
     }
 
     public static void main(String[] args) {
-        System.out.println(fivo(4));
+
+        Queue<Integer> q = new LinkedList<>();
+
+        q.offer(3);
+        q.offer(4);
+        q.offer(2);
+        q.offer(1);
+        q.offer(5);
+        q.offer(6);
+
+        while (!q.isEmpty()) {
+            System.out.println(q.poll());
+        }
+        System.out.println("===============================");
+        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if (o1 < o2) {
+                    return 1;
+                }
+
+                return -1;
+            }
+        });
+
+        pq.offer(3);
+        pq.offer(4);
+        pq.offer(2);
+        pq.offer(1);
+        pq.offer(5);
+        pq.offer(6);
+
+        while (!pq.isEmpty()) {
+            System.out.println(pq.poll());
+        }
+
+
+        //System.out.println(fivo(4));
     }
 }
