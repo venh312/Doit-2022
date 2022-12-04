@@ -33,9 +33,10 @@ public class Practice_32 {
 
         for (int i=0; i<n; i++) {
             StringBuilder sBuilder = new StringBuilder();
-            for (int j=0; j<n; j++) {
+
+            for (int j=0; j<n; j++)
                 sBuilder.append(String.valueOf(map1[i][j] | map2[i][j]));
-            }
+
             answer[i] = sBuilder.toString();
         }
 
@@ -43,6 +44,21 @@ public class Practice_32 {
             answer[i] = answer[i].replace("1","#").replace("0", " ");
 
         return answer;
+    }
+
+    String[] solution2(int n, int[] arr1, int[] arr2) {
+        String[] result = new String[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = Integer.toBinaryString(arr1[i] | arr2[i]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            result[i] = String.format("%" + n + "s", result[i]);
+            result[i] = result[i].replaceAll("1", "#");
+            result[i] = result[i].replaceAll("0", " ");
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
