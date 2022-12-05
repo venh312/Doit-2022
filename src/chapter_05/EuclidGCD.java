@@ -15,7 +15,7 @@ public class EuclidGCD {
     }
 
     public static void main(String[] args) {
-        System.out.println("gcd : " + gcd(1,15));
+        System.out.println("gcd : " + gcd(14,35));
     }
 
 }
