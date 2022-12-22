@@ -12,8 +12,6 @@ public class Practice_07 {
         for (int i = 0; i < dungeons.length; i++) {
             if (!check[i] && dungeons[i][0] <= tired) {
                 check[i] = true;
-                System.out.println("tired: "+ tired);
-                System.out.println("i: "+ i + ", d: "+dungeons[i][0]);
                 dfs(tired-dungeons[i][1], dungeons, cnt+1);
                 check[i] = false;
             }
