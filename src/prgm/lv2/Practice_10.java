@@ -21,16 +21,16 @@ public class Practice_10 {
     static int[][] D = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
     static boolean bfs(String[] place, int row, int col) {
+        boolean[][] visit = new boolean[5][5];
+        visit[row][col] = true;
+
         Queue<Info> q = new LinkedList<>();
         q.offer(new Info(row, col, 0));
-        boolean[][] visit = new boolean[5][5];
 
         while (!q.isEmpty()) {
             Info info = q.poll();
-
             if (info.dist > 2) continue;
             if (info.dist != 0 && place[info.row].charAt(info.col) == 'P') return false;
-
             for (int i = 0; i < 4; i++) {
                 int nr = info.row + D[i][0], nc = info.col + D[i][1];
                 if (nr < 0 || nr > 4 || nc < 0 || nc > 4) continue;
@@ -51,21 +51,18 @@ public class Practice_10 {
                     if (!bfs(place, i, j)) return false;
             }
         }
-
         return true;
     }
 
 
     static public int[] solution(String[][] places) {
         int[] answer = new int[5];
-
         for (int i = 0 ; i < 5; i++) {
             if (check(places[i]))
                 answer[i] = 1;
             else
                 answer[i] = 0;
         }
-
         return answer;
     }
 
