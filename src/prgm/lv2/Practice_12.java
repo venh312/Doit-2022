@@ -2,6 +2,10 @@ package prgm.lv2;
 
 import java.util.*;
 
+/*
+2021 KAKAO BLIND RECRUITMENT
+메뉴 리뉴얼
+ */
 public class Practice_12 {
     static List<Map<String,Integer>> list = new ArrayList<>();
     static int[] maxLen = new int[11];
