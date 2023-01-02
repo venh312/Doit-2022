@@ -13,19 +13,18 @@ public class Practice_14 {
     static String[] separation(String w) {
         String[] result = new String[2];
         StringBuilder u = new StringBuilder(), v = new StringBuilder();
-        char[] cArr = new char[2];
-
+        int left = 0;
+        int right = 0;
         for (int i = 0 ; i < w.length(); i++) {
             char c = w.charAt(i);
             int index = i + 1;
 
-            if (c == '(') {
-                cArr[0] = c;
-            } else if (c == ')') {
-                cArr[1] = c;
-            }
+            if (c == '(')
+                left++;
+            else if (c == ')')
+                right++;
 
-            if (cArr[0] != '\u0000' && cArr[1] != '\u0000' && index % 2 == 0) {
+            if ((left > 0 && right > 0) && left == right && index % 2 == 0) {
                 u.append(w.substring(0, index));
                 v.append(w.substring(index, w.length()));
                 break;
@@ -49,24 +48,45 @@ public class Practice_14 {
         StringBuilder u = new StringBuilder(separation[0]);
         StringBuilder v = new StringBuilder(separation[1]);
 
-        if (passBracket(u.toString())) {
-            separation(v.toString());
+        boolean flag = passBracket(u.toString());
+        while (flag) {
+            String[] sp2 = separation(v.toString());
+            if (!passBracket(sp2[0])) {
+                String tmp = "(" + sp2[1] + ")";
+
+                sp2[0] = sp2[0].substring(1, sp2[0].length());
+                sp2[0] = sp2[0].substring(0, sp2[0].length()-1);
+                sp2[0] = sp2[0].replace(")", "-");
+                sp2[0] = sp2[0].replace("(", ")");
+                sp2[0] = sp2[0].replace("-", "(");
+
+                return answer = u.toString() + tmp + sp2[0];
+            }
+
         }
+
+        if (!flag) {
+            String tmp = "(" + v.toString()+ ")";
+            String uStr = u.toString();
+            uStr = uStr.substring(1, uStr.length());
+            uStr = uStr.substring(0, uStr.length()-1);
+            uStr = uStr.replace(")", "-");
+            uStr = uStr.replace("(", ")");
+            uStr = uStr.replace("-", "(");
+
+            return answer = uStr + tmp;
+        }
+
+
 
         return answer;
     }
 
     public static void main(String[] args) {
-        /*
-        "aabbaccc"	7
-        "ababcdcdababcdcd"	9
-        "abcabcdede"	8
-        "abcabcabcabcdededededede"	14
-        "xababcdcdababcdcd" 17
-         */
         long start = System.currentTimeMillis();
         //System.out.println("==> result: " + solution(")(")); // ()
-        System.out.println("==> result: " + solution("()))((()")); // ()(())()
+        System.out.println("==> result: " + solution("(()())()")); // ()(())()
+        //System.out.println("==> result: " + solution("()))((()")); // ()(())()
         long end = System.currentTimeMillis();
         System.out.println("시간: " + (end - start) + " ms");
     }
