@@ -1,29 +1,62 @@
 package prgm.lv2;
 
+import java.util.*;
+
+/*
+2021 KAKAO BLIND RECRUITMENT
+메뉴 리뉴얼
+ */
 public class Practice_12 {
-
-    static int[] solution(String[] info, String[] query) {
-        int[] answer = new int[info.length];
-
-        int cnt = 0;
-        for (String qy : query) {
-
+    static List<Map<String,Integer>> list = new ArrayList<>();
+    static int[] maxLen = new int[11];
+    static void comb(char[] c, int pos, StringBuilder sb) {
+        if (pos >= c.length) {
+            int len = sb.length();
+            if (len >= 2) {
+                int cnt = list.get(len).getOrDefault(sb.toString(),0) + 1;
+                list.get(len).put(sb.toString(), cnt);
+                maxLen[len] = Math.max(maxLen[len], cnt);
+            }
+            return;
         }
 
-        return answer;
+        comb(c, pos + 1, sb.append(c[pos]));
+        sb.setLength(sb.length()-1);
+        comb(c, pos + 1, sb);
+    }
+
+
+    static String[] solution(String[] orders, int[] course) {
+        String[] answer = {};
+
+        for (int i = 0; i < 11; i++)
+            list.add(new HashMap<String,Integer>());
+
+        for (String order : orders) {
+            char[] c = order.toCharArray();
+            Arrays.sort(c);
+            comb(c, 0, new StringBuilder());
+        }
+
+        List<String> sList = new ArrayList<>();
+        for (int len : course) {
+            for (Map.Entry<String,Integer> e : list.get(len).entrySet()) {
+                if (e.getValue() >= 2 && e.getValue() == maxLen[len]) {
+                    sList.add(e.getKey());
+                }
+            }
+        }
+
+        Collections.sort(sList);
+
+        return sList.toArray(new String[sList.size()]);
     }
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-
-        String[] info = {"java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"};
-        String[] query = {"java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"};
-
-        for (int r : solution(info, query)) {
-            System.out.print(r + " ");
-        }
-
-        System.out.println();
+        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        int[] course = {2,3,4};
+        System.out.println("==> result : " + solution(orders, course));
         long end = System.currentTimeMillis();
         System.out.println("시간: " + (end - start) + " ms");
     }
