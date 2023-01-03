@@ -7,7 +7,11 @@ package prgm.lv2;
 public class Practice_14 {
 
     static boolean passBracket(String u) {
-        return u.charAt(0) == '(' && u.charAt(1) == ')';
+        for (int i = 0; i < u.length(); i++) {
+            if (!u.isEmpty())
+                u = u.replace("()", "");
+        }
+        return u.isEmpty();
     }
 
     static String[] separation(String w) {
@@ -43,12 +47,17 @@ public class Practice_14 {
     static String solution(String p) {
         String answer = "";
 
+        if (passBracket(p)) return p;
+
         String[] separation = separation(p);
 
         StringBuilder u = new StringBuilder(separation[0]);
         StringBuilder v = new StringBuilder(separation[1]);
 
         boolean flag = passBracket(u.toString());
+
+        System.out.println("u가 올바른 문자열 인가요? : " + flag);
+
         while (flag) {
             String[] sp2 = separation(v.toString());
             if (!passBracket(sp2[0])) {
@@ -62,7 +71,6 @@ public class Practice_14 {
 
                 return answer = u.toString() + tmp + sp2[0];
             }
-
         }
 
         if (!flag) {
@@ -77,15 +85,15 @@ public class Practice_14 {
             return answer = uStr + tmp;
         }
 
-
-
         return answer;
     }
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         //System.out.println("==> result: " + solution(")(")); // ()
-        System.out.println("==> result: " + solution("(()())()")); // ()(())()
+        //System.out.println("==> result: " + solution("(()())()")); // ()(())()
+        //System.out.println("==> result: " + solution("))))((((")); // ()(())()
+        System.out.println("==> result: " + solution(")()(()")); // ((()))
         //System.out.println("==> result: " + solution("()))((()")); // ()(())()
         long end = System.currentTimeMillis();
         System.out.println("시간: " + (end - start) + " ms");
