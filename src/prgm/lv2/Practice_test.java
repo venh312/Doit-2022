@@ -61,10 +61,17 @@ public class Practice_test {
         return answer;
     }
 
+    public static void dfs(int n) {
+        if (n == 0) return;
+        for (int i = 0; i < 2; i++) {
+            System.out.println("I:"+i);
+            System.out.println("N:"+n);
+            System.out.println("=============>");
+            dfs(n-1);
+        }
+    }
+
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
-        System.out.println("==> result: " + solution(9, new int[][] {{1,3},{2,3},{3,4},{4,5},{4,6},{4,7},{7,8},{7,9}}));
-        long end = System.currentTimeMillis();
-        System.out.println("시간: " + (end - start) + " ms");
+        dfs(2);
     }
 }
